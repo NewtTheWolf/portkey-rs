@@ -5,6 +5,7 @@ edition = "2021"
 authors = ["Dominik Spitzli <dominik@spitzli.dev>"]
 description = "A Rust SDK for interacting with Portkey AI"
 license = "MIT"
+readme = "README.md"
 repository = "https://github.com/NewtTheWolf/portkey-rs"
 keywords = ["portkey", "ai", "openai", "llm", "gateway"]
 categories = ["api-bindings", "network-programming"]
