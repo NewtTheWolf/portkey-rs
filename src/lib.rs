@@ -40,12 +40,6 @@ const BASE_URL: &str = "https://api.portkey.ai/v1";
 pub struct Client {
     /// OpenAI client configured for Portkey.
     openai: OpenAIClient<OpenAIConfig>,
-    /// Base URL for the API.
-    base_url: String,
-    /// The Portkey virtual key used for authentication.
-    virtual_key: String,
-    /// The Portkey API key used for authentication.
-    api_key: String,
 }
 
 impl Client {
@@ -90,12 +84,7 @@ impl Client {
 
         let openai = OpenAIClient::with_config(openai_config).with_http_client(reqwest_client);
 
-        Self {
-            openai,
-            base_url: BASE_URL.to_string(),
-            virtual_key: virtual_key.to_string(),
-            api_key: api_key.to_string(),
-        }
+        Self { openai }
     }
 
     /// Returns the underlying OpenAI client configured for Portkey.
