@@ -1,0 +1,19 @@
+[package]
+name = "portkey"
+version = "0.1.0"
+edition = "2021"
+authors = ["Dominik Spitzli <dominik@spitzli.dev>"]
+description = "A Rust SDK for interacting with Portkey AI"
+license = "MIT"
+repository = "https://github.com/NewtTheWolf/portkey-rs"
+keywords = ["portkey", "ai", "openai", "llm", "gateway"]
+categories = ["api-bindings", "network-programming"]
+homepage = "https://portkey.ai/"
+rust-version = "1.80"
+
+[dependencies]
+async-openai = "0.26.0"
+reqwest = "0.12.9"
+
+[features]
+default = []
