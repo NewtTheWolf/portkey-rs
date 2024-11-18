@@ -1,6 +1,6 @@
 [package]
 name = "portkey"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Dominik Spitzli <dominik@spitzli.dev>"]
 description = "A Rust SDK for interacting with Portkey AI"
