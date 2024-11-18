@@ -25,27 +25,42 @@ cargo add portkey
 Here's how to use the `portkey` client:
 
 ```rust
-use portkey::Client;
+use async_openai::{
+    types::{
+        ChatCompletionRequestMessage, ChatCompletionRequestSystemMessageArgs,
+        CreateChatCompletionRequest, CreateChatCompletionRequestArgs,
+    },
+    Models,
+};
+use portkey::Client as PortkeyClient;
 
 #[tokio::main]
 async fn main() {
     let api_key = "your-portkey-api-key";
     let virtual_key = "your-portkey-virtual-key";
 
-    // Create a new Portkey client
-    let client = Client::new(api_key, virtual_key);
+    let client = PortkeyClient::new(&api_key, &virtual_key);
+    let openai = client.openai();
 
-    // Access the OpenAI client
-    let openai_client = client.openai();
+    let mut messages: Vec<ChatCompletionRequestMessage> = Vec::new();
 
-    // Example API call
-    let response = openai_client
-        .completions()
-        .create("text-davinci-003", "Hello, Portkey!", None)
-        .await
-        .expect("API call failed");
+    messages.push(
+        ChatCompletionRequestSystemMessageArgs::default()
+            .content("Hello, Portkey!".to_string())
+            .build()
+            .unwrap()
+            .into(),
+    );
 
-    println!("{:?}", response);
+    let request = CreateChatCompletionRequestArgs::default()
+        .model("gpt-4o".to_string())
+        .messages(messages)
+        .build()
+        .unwrap();
+
+    let res = openai.chat().create(request).await.unwrap();
+
+    println!("{:?}", res.choices);
 }
 ```
 
